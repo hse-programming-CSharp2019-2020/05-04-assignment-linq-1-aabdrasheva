@@ -73,7 +73,7 @@ namespace Task03
                     names = Console.ReadLine().Split(' ');
                     if (names.Length != 3 || !Int32.TryParse(names[1], out year) || year < 1970 || 
                         year > 2020 || !Int32.TryParse(names[2], out manu) || manu < 0 || manu > 3)
-                        throw new FormatException();
+                        throw new ArgumentException();
                     int.TryParse(names[1], out year);
                     int.TryParse(names[2], out manu);
                     computerInfoList.Add(new ComputerInfo(names[0], year, manu));
