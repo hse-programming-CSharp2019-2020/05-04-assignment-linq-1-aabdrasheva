@@ -59,11 +59,11 @@ namespace Task03
             try
             {
                 string str = Console.ReadLine();
-                if(!Int32.TryParse(str, out N)) 
+                if(!Int32.TryParse(str, out checked(N))) 
                 {  
                     throw new FormatException();
                 } 
-                int.TryParse(str, out N);
+                int.TryParse(str, out checked(N));
                 if (N < 1) throw new FormatException();
                 string[] names;
                 int year;
@@ -78,6 +78,10 @@ namespace Task03
                     int.TryParse(names[2], out manu);
                     computerInfoList.Add(new ComputerInfo(names[0], year, manu));
                 } 
+            }
+            catch (OverflowException)
+            {
+                Console.WriteLine("OverflowException");
             }
             catch (FormatException)
             {
