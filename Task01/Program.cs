@@ -38,7 +38,6 @@ namespace Task01
         {
             RunTesk01();
         }
-
         public static void RunTesk01()
         {
             string[] str = Console.ReadLine().Split(' ');
@@ -68,17 +67,22 @@ namespace Task01
             }
             // использовать синтаксис запросов!
             IEnumerable<int> arrQuery = from n in arr
-                                        where n < 1 || n%2==0
+                                        where n < 1 || n%2 == 0
                                         select n;
 
             // использовать синтаксис методов!
-            IEnumerable<int> arrMethod = arr.Where(n => n < 1 || n%2 == 0);
-           
-
+            IEnumerable<int> arrMethod = arr.Where(n => n < 1 || n % 2 == 0);
+            
             try
             {
+               if (arrQuery == null || arrMethod == null || !arrMethod.Any() || !arrQuery.Any())  throw new InvalidOperationException("InvalidOperationException");
+               else
+               {
                 PrintEnumerableCollection<int>(arrQuery, ":");
                 PrintEnumerableCollection<int>(arrMethod, "*");
+               }
+               
+                    
             }
             catch (FormatException)
             {
