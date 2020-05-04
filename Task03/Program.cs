@@ -55,15 +55,17 @@ namespace Task03
         static void Main(string[] args)
         {
             int N = 0;
+            int minValue = Int32.MinValue;
             List<ComputerInfo> computerInfoList = new List<ComputerInfo>();
             try
             {
                 string str = Console.ReadLine();
-                if(!Int32.TryParse(str, out checked(N))) 
+
+                if(!Int32.TryParse(str, out N)) 
                 {  
-                    throw new FormatException();
+                    throw new OverflowException();
                 } 
-                int.TryParse(str, out checked(N));
+                int.TryParse(str, out N);
                 if (N < 1) throw new FormatException();
                 string[] names;
                 int year;
