@@ -52,10 +52,12 @@ namespace Task03
 {
     class Program
     {
+
         static void Main(string[] args)
         {
-            Console.OutputEncoding = Encoding.UTF8;
-            Console.InputEncoding = Encoding.UTF8;
+            Console.OutputEncoding = System.Text.Encoding.UTF8;
+            Console.InputEncoding = System.Text.Encoding.UTF8;
+
             int N = 0;
             int minValue = Int32.MinValue;
             List<ComputerInfo> computerInfoList = new List<ComputerInfo>();
