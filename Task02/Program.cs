@@ -72,8 +72,8 @@ namespace Task02
                 double averageUsingStaticForm = filteredCollection2.Average();
                 // использовать объектную форму вызова метода подсчета среднего
                 double averageUsingInstanceForm = filteredCollection2.Average();
-                Console.WriteLine(averageUsingInstanceForm.ToString("f3"));
-                Console.WriteLine(averageUsingStaticForm.ToString("f3"));
+                Console.WriteLine(averageUsingInstanceForm.ToString("f3").Replace(',', ','));
+                Console.WriteLine(averageUsingStaticForm.ToString("f3").Replace(',', ','));
                 // вывести элементы коллекции в одну строку
                 Console.WriteLine(String.Join(" " ,filteredCollection));
             }
