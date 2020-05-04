@@ -50,6 +50,18 @@ namespace Task01
                 // Попробуйте осуществить считывание целочисленного массива, записав это ОДНИМ ВЫРАЖЕНИЕМ.
                 arr = str1.Select<string, int>(s => int.Parse(s)).ToArray<int>();
             }
+            catch (InvalidOperationException)
+            {
+                Console.WriteLine("InvalidOperationException");
+            }
+            catch (FormatException)
+            {
+                Console.WriteLine("FormatException");
+            }
+            catch (OverflowException)
+            {
+                Console.WriteLine("OverflowException");
+            }
             catch (Exception)
             {
                 Console.WriteLine("Exception");
@@ -68,9 +80,17 @@ namespace Task01
                 PrintEnumerableCollection<int>(arrQuery, ":");
                 PrintEnumerableCollection<int>(arrMethod, "*");
             }
+            catch (FormatException)
+            {
+                Console.WriteLine("FormatException");
+            }
             catch (InvalidOperationException)
             {
                 Console.WriteLine("InvalidOperationException");
+            }
+            catch (OverflowException)
+            {
+                Console.WriteLine("OverflowException");
             }
             catch (Exception)
             {
