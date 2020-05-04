@@ -64,10 +64,10 @@ namespace Task02
             }
             
             var filteredCollection = arr.TakeWhile(n => string.Compare("0", n.ToString(), true) != 0);
-            var filteredCollection2 = filteredCollection.Select(n => n*n);
+            
             try
             {
-                
+                var filteredCollection2 = filteredCollection.Select(n => checked(n*n));
                 // использовать статическую форму вызова метода подсчета среднего
                 double averageUsingStaticForm = filteredCollection2.Average();
                 // использовать объектную форму вызова метода подсчета среднего
