@@ -64,14 +64,14 @@ namespace Task02
             }
             
             var filteredCollection = arr.TakeWhile(n => string.Compare("0", n.ToString(), true) != 0);
-           
+            var filteredCollection2 = filteredCollection.Select(n => n*n);
             try
             {
                 
                 // использовать статическую форму вызова метода подсчета среднего
-                double averageUsingStaticForm = filteredCollection.Average();
+                double averageUsingStaticForm = filteredCollection2.Average();
                 // использовать объектную форму вызова метода подсчета среднего
-                double averageUsingInstanceForm = filteredCollection.Average();
+                double averageUsingInstanceForm = filteredCollection2.Average();
                 Console.WriteLine(averageUsingInstanceForm.ToString("f3"));
                 Console.WriteLine(averageUsingStaticForm.ToString("f3"));
                 // вывести элементы коллекции в одну строку
