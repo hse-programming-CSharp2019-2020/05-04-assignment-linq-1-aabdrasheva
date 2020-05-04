@@ -54,6 +54,8 @@ namespace Task03
     {
         static void Main(string[] args)
         {
+            Console.OutputEncoding = Encoding.UTF8;
+            Console.InputEncoding = Encoding.UTF8;
             int N = 0;
             int minValue = Int32.MinValue;
             List<ComputerInfo> computerInfoList = new List<ComputerInfo>();
