@@ -54,28 +54,55 @@ namespace Task03
     {
         static void Main(string[] args)
         {
-            int N
+            int N = 0;
             List<ComputerInfo> computerInfoList = new List<ComputerInfo>();
             try
             {
-                N = 
-                
+                string str = Console.ReadLine();
+                if(!Int32.TryParse(str, out N)) 
+                {  
+                    throw new FormatException();
+                } 
+                int.TryParse(str, out N);
+                if (N < 1) throw new FormatException();
+                string[] names;
+                int year;
+                int manu;
                 for (int i = 0; i < N; i++)
                 {
-                    
-                }
+                    names = Console.ReadLine().Split(' ');
+                    if (names.Length != 3 || !Int32.TryParse(names[1], out year) || year < 1970 || 
+                        year > 2020 || !Int32.TryParse(names[2], out manu) || manu < 0 || manu > 3)
+                        throw new FormatException();
+                    int.TryParse(names[1], out year);
+                    int.TryParse(names[2], out manu);
+                    computerInfoList.Add(new ComputerInfo(names[0], year, manu));
+                } 
             }
-           
+            catch (FormatException)
+            {
+                Console.WriteLine("FormatException");
+            }
+            catch(ArgumentException)
+            {
+                Console.WriteLine("ArgumentException");
+            }
+            catch (Exception)
+            {
+                Console.WriteLine("Exception");
+            }
 
             // выполните сортировку одним выражением
-            var computerInfoQuery = from 
+            var computerInfoQuery = from n in computerInfoList
+                                    orderby n.Owner descending, String.Concat(n.ComputerManufacturer), n.Year descending
+                                    select n;
 
             PrintCollectionInOneLine(computerInfoQuery);
 
             Console.WriteLine();
 
             // выполните сортировку одним выражением
-            var computerInfoMethods = computerInfoList.
+            var computerInfoMethods = computerInfoList.OrderByDescending(n => n.Owner).ThenBy(n => String.Concat(n.ComputerManufacturer)).ThenByDescending(n => n.Year);
 
             PrintCollectionInOneLine(computerInfoMethods);
             
@@ -84,14 +111,29 @@ namespace Task03
         // выведите элементы коллекции на экран с помощью кода, состоящего из одной линии (должна быть одна точка с запятой)
         public static void PrintCollectionInOneLine(IEnumerable<ComputerInfo> collection)
         {
+            foreach (var item in collection)
+            {
+                Console.WriteLine($"{item.Owner}: {item.ComputerManufacturer} [{item.Year}]");
+            }
+
         }
     }
 
 
-    class ComputerInfo
-    {
+    public class ComputerInfo
+    {              
         public string Owner { get; set; }
+        public int Year {get; set;}
         public Manufacturer ComputerManufacturer { get; set; }
-        
+        public enum Manufacturer
+        {
+            Dell, Asus, Apple, Microsoft
+        }
+        public ComputerInfo(string name, int year, int manu)
+        {
+            Owner = name;
+            ComputerManufacturer = (Manufacturer)manu;
+            Year = year;
+        }
     }
 }
