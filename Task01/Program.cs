@@ -41,23 +41,40 @@ namespace Task01
 
         public static void RunTesk01()
         {
-            int[] arr;
+            string[] str = Console.ReadLine().Split(' ');
+            string[] str1 = str.Where(n => !string.IsNullOrEmpty(n)).ToArray();
+            int[] arr = new int[str1.Length];
+            
             try
             {
                 // Попробуйте осуществить считывание целочисленного массива, записав это ОДНИМ ВЫРАЖЕНИЕМ.
-                arr = 
+                arr = str1.Select<string, int>(s => int.Parse(s)).ToArray<int>();
             }
-            
+            catch (Exception)
+            {
+                Console.WriteLine("Exception");
+            }
             // использовать синтаксис запросов!
-            IEnumerable<int> arrQuery = from 
+            IEnumerable<int> arrQuery = from n in arr
+                                        where n < 1 || n%2==0
+                                        select n;
 
             // использовать синтаксис методов!
-            IEnumerable<int> arrMethod = arr.
+            IEnumerable<int> arrMethod = arr.Where(n => n < 1 || n%2 == 0);
+           
 
             try
             {
                 PrintEnumerableCollection<int>(arrQuery, ":");
                 PrintEnumerableCollection<int>(arrMethod, "*");
+            }
+            catch (InvalidOperationException)
+            {
+                Console.WriteLine("InvalidOperationException");
+            }
+            catch (Exception)
+            {
+                Console.WriteLine("Exception");
             }
         }
 
@@ -65,7 +82,7 @@ namespace Task01
         // P.S. Есть два способа, оставьте тот, в котором применяется LINQ...
         public static void PrintEnumerableCollection<T>(IEnumerable<T> collection, string separator)
         {
-           
+           Console.WriteLine(string.Join(separator, collection.Select(u => u)));
            
         }
     }
