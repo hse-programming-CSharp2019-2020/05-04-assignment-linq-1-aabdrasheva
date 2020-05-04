@@ -38,29 +38,62 @@ namespace Task02
 
         public static void RunTesk02()
         {
-            int[] arr;
+            string[] str = Console.ReadLine().Split(' ');
+            string[] str1 = str.Where(n => !string.IsNullOrEmpty(n)).ToArray();
+            int[] arr = new int[str1.Length];
             try
             {
                 // Попробуйте осуществить считывание целочисленного массива, записав это ОДНИМ ВЫРАЖЕНИЕМ.
-                arr = 
+                arr = str1.Select<string, int>(s => int.Parse(s)).ToArray<int>();
+            }
+            catch (InvalidOperationException)
+            {
+                Console.WriteLine("InvalidOperationException");
+            }
+            catch (FormatException)
+            {
+                Console.WriteLine("FormatException");
+            }
+            catch (OverflowException)
+            {
+                Console.WriteLine("OverflowException");
+            }
+            catch (Exception)
+            {
+                Console.WriteLine("Exception");
             }
             
-            
-            var filteredCollection = arr.
+            var filteredCollection = arr.TakeWhile(n => string.Compare("0", n.ToString(), true) != 0);
            
             try
             {
                 
                 // использовать статическую форму вызова метода подсчета среднего
-                double averageUsingStaticForm = 
+                double averageUsingStaticForm = filteredCollection.Average();
                 // использовать объектную форму вызова метода подсчета среднего
-                double averageUsingInstanceForm = 
-
-
+                double averageUsingInstanceForm = filteredCollection.Average();
+                Console.WriteLine(averageUsingInstanceForm.ToString("f3"));
+                Console.WriteLine(averageUsingStaticForm.ToString("f3"));
                 // вывести элементы коллекции в одну строку
-                filteredCollection.
+                Console.WriteLine(String.Join(" " ,filteredCollection));
             }
-          
+
+             catch (InvalidOperationException)
+            {
+                Console.WriteLine("InvalidOperationException");
+            }
+            catch (FormatException)
+            {
+                Console.WriteLine("FormatException");
+            }
+            catch (OverflowException)
+            {
+                Console.WriteLine("OverflowException");
+            }
+            catch (Exception)
+            {
+                Console.WriteLine("Exception");
+            }
         }
         
     }
