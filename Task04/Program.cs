@@ -47,7 +47,11 @@ namespace Task04
             {
                 // Попробуйте осуществить считывание целочисленного массива, записав это ОДНИМ ВЫРАЖЕНИЕМ.
                 arr = str1.Select<string, int>(s => int.Parse(s)).ToArray<int>();
-            
+                for (int i = 0; i < arr.Length; i++)
+			    {
+                    if (arr[i] > Int32.MaxValue || arr[i] < Int32.MinValue)
+                throw new OverflowException();
+			    }
            
                 // использовать синтаксис методов! SQL-подобные запросы не писать!
                int arrAggregate = 5 + arr.Aggregate((x,y) => Convert.ToInt32(x) + Convert.ToInt32(y * Math.Pow(-1, Array.FindIndex(arr, a => (a == y)))));
