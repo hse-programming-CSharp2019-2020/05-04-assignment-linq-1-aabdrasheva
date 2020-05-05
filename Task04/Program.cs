@@ -46,7 +46,21 @@ namespace Task04
             try
             {
                 // Попробуйте осуществить считывание целочисленного массива, записав это ОДНИМ ВЫРАЖЕНИЕМ.
-                arr = str1.Select<string, int>(s => checked(int.Parse(s))).ToArray<int>();
+                arr = str1.Select<string, int>(s => int.Parse(s)).ToArray<int>();
+            
+           
+                // использовать синтаксис методов! SQL-подобные запросы не писать!
+               int arrAggregate = 5 + arr.Aggregate((x,y) => Convert.ToInt32(x) + Convert.ToInt32(y * Math.Pow(-1, Array.FindIndex(arr, a => (a == y)))));
+                
+                int arrMyAggregate = MyClass.MyAggregate(arr);
+            
+                if (arrAggregate > Int32.MaxValue || arrAggregate < Int32.MinValue || arrMyAggregate > Int32.MaxValue || arrMyAggregate < Int32.MinValue)
+                throw new OverflowException();
+                else 
+                {
+                Console.WriteLine(arrAggregate);
+                Console.WriteLine(arrMyAggregate);
+                }
             }
             catch (InvalidOperationException)
             {
@@ -64,15 +78,6 @@ namespace Task04
             {
                 Console.WriteLine("Exception");
             }
-           
-                // использовать синтаксис методов! SQL-подобные запросы не писать!
-
-                int arrAggregate = 5 + arr.Aggregate((x,y) => Convert.ToInt32(x) + Convert.ToInt32(y * Math.Pow(-1, Array.FindIndex(arr, a => (a == y)))));
-
-                int arrMyAggregate = MyClass.MyAggregate(arr);
-
-                Console.WriteLine(arrAggregate);
-                Console.WriteLine(arrMyAggregate);
            
         }
     }
