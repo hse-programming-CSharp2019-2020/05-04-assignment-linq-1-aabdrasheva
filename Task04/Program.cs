@@ -59,9 +59,9 @@ namespace Task04
 			{
                     arr1[i] = Convert.ToInt32(arr[i]*Math.Pow(-1, i));
 			}
-                int arrAggregate = 5 + arr1.Aggregate((x,y) => Convert.ToInt32(x) + Convert.ToInt32(y));
+                int arrAggregate = checked(5 + arr1.Aggregate((x,y) => Convert.ToInt32(x) + Convert.ToInt32(y)));
                 
-                int arrMyAggregate = MyClass.MyAggregate(arr);
+                int arrMyAggregate = checked(MyClass.MyAggregate(arr));
             
                 if (arrAggregate > Int32.MaxValue || arrAggregate < Int32.MinValue || arrMyAggregate > Int32.MaxValue || arrMyAggregate < Int32.MinValue)
                 throw new OverflowException();
