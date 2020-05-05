@@ -54,17 +54,16 @@ namespace Task04
 			    }
            
                 // использовать синтаксис методов! SQL-подобные запросы не писать!
-               int arrAggregate = 5 + arr.Aggregate((x,y) => Convert.ToInt32(x) + Convert.ToInt32(y * Math.Pow(-1, Array.FindIndex(arr, a => (a == y)))));
+               int arrAggregate = checked(5 + arr.Aggregate((x,y) => Convert.ToInt32(x) + Convert.ToInt32(y * Math.Pow(-1, Array.FindIndex(arr, a => (a == y))))));
                 
-                int arrMyAggregate = MyClass.MyAggregate(arr);
+                int arrMyAggregate = checked(MyClass.MyAggregate(arr));
             
                 if (arrAggregate > Int32.MaxValue || arrAggregate < Int32.MinValue || arrMyAggregate > Int32.MaxValue || arrMyAggregate < Int32.MinValue)
                 throw new OverflowException();
-                else 
-                {
+                
                 Console.WriteLine(arrAggregate);
                 Console.WriteLine(arrMyAggregate);
-                }
+                
             }
             catch (InvalidOperationException)
             {
