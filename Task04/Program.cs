@@ -39,7 +39,7 @@ namespace Task04
         }
 
         public static void RunTesk04()
-        {
+        { 
             string[] str = Console.ReadLine().Split(' ');
             string[] str1 = str.Where(n => !string.IsNullOrEmpty(n)).ToArray();
             int[] arr = new int[str1.Length];
