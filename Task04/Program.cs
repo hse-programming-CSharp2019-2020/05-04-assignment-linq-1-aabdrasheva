@@ -50,13 +50,13 @@ namespace Task04
                 for (int i = 0; i < arr.Length; i++)
 			    {
                     if (arr[i] > Int32.MaxValue || arr[i] < Int32.MinValue)
-                throw new OverflowException();
+                    throw new OverflowException();
 			    }
            
                 // использовать синтаксис методов! SQL-подобные запросы не писать!
-               int arrAggregate = checked(5 + arr.Aggregate((x,y) => Convert.ToInt32(x) + Convert.ToInt32(y * Math.Pow(-1, Array.FindIndex(arr, a => (a == y))))));
+               int arrAggregate = 5 + arr.Aggregate((x,y) => Convert.ToInt32(x) + Convert.ToInt32(y * Math.Pow(-1, Array.FindIndex(arr, a => (a == y)))));
                 
-                int arrMyAggregate = checked(MyClass.MyAggregate(arr));
+                int arrMyAggregate = MyClass.MyAggregate(arr);
             
                 if (arrAggregate > Int32.MaxValue || arrAggregate < Int32.MinValue || arrMyAggregate > Int32.MaxValue || arrMyAggregate < Int32.MinValue)
                 throw new OverflowException();
