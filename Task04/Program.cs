@@ -46,7 +46,7 @@ namespace Task04
             try
             {
                 // Попробуйте осуществить считывание целочисленного массива, записав это ОДНИМ ВЫРАЖЕНИЕМ.
-                arr = str1.Select<string, int>(s => int.Parse(s)).ToArray<int>();
+                arr = str1.Select<string, int>(s => checked(int.Parse(s))).ToArray<int>();
                 for (int i = 0; i < arr.Length; i++)
 			    {
                     if (arr[i] > Int32.MaxValue || arr[i] < Int32.MinValue)
