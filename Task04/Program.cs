@@ -1,5 +1,6 @@
 ﻿using System;
-
+using System.Collections.Generic;
+using System.Linq;
 /*
  * На вход подается строка, состоящая из целых чисел типа int, разделенных одним или несколькими пробелами.
  * На основе полученных чисел получить новое по формуле: 5 + a[0] - a[1] + a[2] - a[3] + ...
@@ -39,16 +40,34 @@ namespace Task04
 
         public static void RunTesk04()
         {
-            int[] arr;
+            string[] str = Console.ReadLine().Split(' ');
+            string[] str1 = str.Where(n => !string.IsNullOrEmpty(n)).ToArray();
+            int[] arr = new int[str1.Length];
             try
             {
                 // Попробуйте осуществить считывание целочисленного массива, записав это ОДНИМ ВЫРАЖЕНИЕМ.
-                arr = 
+                arr = str1.Select<string, int>(s => checked(int.Parse(s))).ToArray<int>();
+            }
+            catch (InvalidOperationException)
+            {
+                Console.WriteLine("InvalidOperationException");
+            }
+            catch (FormatException)
+            {
+                Console.WriteLine("FormatException");
+            }
+            catch (OverflowException)
+            {
+                Console.WriteLine("OverflowException");
+            }
+            catch (Exception)
+            {
+                Console.WriteLine("Exception");
             }
            
                 // использовать синтаксис методов! SQL-подобные запросы не писать!
-               
-                int arrAggregate = arr.
+
+                int arrAggregate = 5 + arr.Aggregate((x,y) => Convert.ToInt32(x) + Convert.ToInt32(y * Math.Pow(-1, Array.FindIndex(arr, a => (a == y)))));
 
                 int arrMyAggregate = MyClass.MyAggregate(arr);
 
@@ -60,9 +79,14 @@ namespace Task04
 
     static class MyClass
     {
-        public static int MyAggregate()
+        public static int MyAggregate(int[] arr)
         {
-            
+            int n = 5;
+            for (int i = 0; i < arr.Length; i++)
+			{
+                n += Convert.ToInt32(arr[i] * Math.Pow(-1, i));
+			}
+            return n;
         }
     }
 }
